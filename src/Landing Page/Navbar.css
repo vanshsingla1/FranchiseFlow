@@ -1,0 +1,248 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: all 0.3s ease;
+    background-color: transparent;
+  }
+  
+  .navbar.scrolled {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px 0;
+  }
+  
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+  }
+  
+  .logo-primary {
+    color: #2b6cb0;
+  }
+  
+  .scrolled .logo-primary {
+    color: #2b6cb0;
+  }
+  
+  .logo-secondary {
+    color: #4FD1C5;
+    margin-left: 2px;
+  }
+  
+  .navbar-desktop {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+  }
+  
+  .navbar-item a {
+    text-decoration: none;
+    color: #1a202c;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4FD1C5;
+    transition: width 0.3s ease;
+  }
+  
+  .navbar-item a:hover,
+  .navbar-item a.active {
+    color: #2b6cb0;
+  }
+  
+  .navbar-item a:hover::after,
+  .navbar-item a.active::after {
+    width: 100%;
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
+  .btn-login {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #2b6cb0;
+    font-weight: 600;
+    margin-right: 15px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .login-icon {
+    margin-right: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .btn-login:hover {
+    background-color: rgba(43, 108, 176, 0.1);
+  }
+  
+  .btn-register {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #2b6cb0 0%, #4FD1C5 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(43, 108, 176, 0.3);
+  }
+  
+  .btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(43, 108, 176, 0.4);
+  }
+  
+  .navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #2b6cb0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    display: none;
+  }
+  
+  .mobile-menu-content {
+    padding: 80px 20px 20px;
+  }
+  
+  .mobile-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mobile-links li {
+    margin-bottom: 20px;
+  }
+  
+  .mobile-links a {
+    display: block;
+    color: #1a202c;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .mobile-links a:hover,
+  .mobile-links a.active {
+    background-color: #f7fafc;
+    color: #2b6cb0;
+  }
+  
+  .mobile-divider {
+    height: 1px;
+    background-color: #e2e8f0;
+    margin: 20px 0;
+  }
+  
+  .mobile-login {
+    display: flex !important;
+    align-items: center;
+    color: #2b6cb0 !important;
+    font-weight: 600 !important;
+  }
+  
+  .mobile-register {
+    background: linear-gradient(135deg, #2b6cb0 0%, #4FD1C5 100%);
+    color: #ffffff !important;
+    text-align: center;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 10px rgba(43, 108, 176, 0.3);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .navbar-desktop {
+      display: none;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  
+    .mobile-menu {
+      display: block;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar-logo {
+      font-size: 1.2rem;
+    }
+    
+    .navbar {
+      padding: 15px 0;
+    }
+    
+    .navbar.scrolled {
+      padding: 12px 0;
+    }
+  }
+  
+  /* Animation for scrolling to section */
+  html {
+    scroll-behavior: smooth;
+  }
