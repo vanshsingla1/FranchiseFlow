@@ -37,7 +37,7 @@ const Applicants = () => {
   const handleFranchise = async (email) => {
     if (franchised[email]) return;
     setFranchised((prev) => ({ ...prev, [email]: true }));
-    let url = "http://franchiseflow-backend-production.up.railway.app/admin/makeFranchise";
+    let url = "https://franchiseflow-backend-production.up.railway.app/admin/makeFranchise";
     let obj = { email: email };
 
     try {
@@ -78,17 +78,17 @@ const Applicants = () => {
   };
 
   const getAllPendingApplicantDetails = () =>
-    fetchApplicants("http://franchiseflow-backend-production.up.railway.app/admin/getAllPendingApplicantsDetails", "pending");
+    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllPendingApplicantsDetails", "pending");
 
   const getAllAcceptedApplicantDetails = () =>
-    fetchApplicants("http://franchiseflow-backend-production.up.railway.app/admin/getAllAcceptedApplicantsDetails", "accepted");
+    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllAcceptedApplicantsDetails", "accepted");
 
   const getAllDeclinedApplicantDetails = () =>
-    fetchApplicants("http://franchiseflow-backend-production.up.railway.app/admin/getAllDeclinedApplicantsDetails", "declined");
+    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllDeclinedApplicantsDetails", "declined");
 
   const doApprove = async (email) => {
     try {
-      await axios.post("http://franchiseflow-backend-production.up.railway.app/admin/approveApplications", { email }, {
+      await axios.post("https://franchiseflow-backend-production.up.railway.app/admin/approveApplications", { email }, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
     } catch (error) {
@@ -98,7 +98,7 @@ const Applicants = () => {
 
   const doDecline = async (email) => {
     try {
-      await axios.post("http://franchiseflow-backend-production.up.railway.app/declineApplications", { email }, {
+      await axios.post("https://franchiseflow-backend-production.up.railway.app/declineApplications", { email }, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
     } catch (error) {

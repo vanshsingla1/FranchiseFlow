@@ -137,7 +137,7 @@ const Apply = () => {
     }
 
     try {
-      let url = "http://franchiseflow-backend-production.up.railway.app/user/SaveUserApplyDetails";
+      let url = "https://franchiseflow-backend-production.up.railway.app/user/SaveUserApplyDetails";
       let resp = await axios.post(url, obj, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       });

@@ -13,7 +13,7 @@ const Todays = () => {
     e.preventDefault();
     console.log({ date, totalSales, customersVisited });
   
-    let url = "http://franchiseflow-backend-production.up.railway.app/user/save-todays-sale";
+    let url = "https://franchiseflow-backend-production.up.railway.app/user/save-todays-sale";
     let obj = {
       email: email,
       date: date,

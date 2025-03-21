@@ -14,7 +14,7 @@ const Charts = () => {
   useEffect(() => {
     const fetchSalesData = async () => {
       try {
-        const url = "http://franchiseflow-backend-production.up.railway.app/user/sales-charts";
+        const url = "https://franchiseflow-backend-production.up.railway.app/user/sales-charts";
         const obj = { email };
     
         // Retrieve token from localStorage

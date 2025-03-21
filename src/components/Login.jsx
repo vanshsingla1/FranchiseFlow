@@ -33,7 +33,7 @@ const Login = () => {
       setErrors({});
       // Handle successful login here
       // console.log('Logged in with:', { email, password });
-      let url = "http://franchiseflow-backend-production.up.railway.app/user/checklogin";
+      let url = "https://franchiseflow-backend-production.up.railway.app/user/checklogin";
       let obj = { email: email,
         pwd : password
       };
