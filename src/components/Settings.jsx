@@ -54,7 +54,7 @@ const Settings = () => {
     }
   
     try {
-      let url = "http://localhost:2004/user/updatePwd";
+      let url = "http://franchiseflow-backend-production.up.railway.app/user/updatePwd";
       let obj = { 
         pwd: oldpassword,
         newpwd: password,
