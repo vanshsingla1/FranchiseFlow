@@ -5,7 +5,7 @@ import Landingpage from "./Landing Page/Landingpage";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute"; // Ensure correct import
-import Applicants from "./admin/applicants";
+import Applicants from "./admin/Applicants";
 import ProtectedRouteAdmin from "./components/ProtectedRouteAdmin";
 
 function App() {
