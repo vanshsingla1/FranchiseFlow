@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { useNavigate , Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar2 from "../Landing Page/Navbar2";
-import Footer  from "../Landing Page/Footer";
-
+import Footer from "../Landing Page/Footer";
 
 const Apply = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -11,7 +10,7 @@ const Apply = () => {
   const [errors, setErrors] = useState({});
   const [agreeTerms, setAgreeTerms] = useState(false);
   
-  var [obj, setObj] = useState({
+  const [obj, setObj] = useState({
     email: "",
     name: "",
     contact: "",
@@ -28,7 +27,7 @@ const Apply = () => {
   });
 
   function doUpdate(event) {
-    var { name, value } = event.target;
+    const { name, value } = event.target;
     setObj({ ...obj, [name]: value });
     
     // Clear error for the field being updated
@@ -143,7 +142,7 @@ const Apply = () => {
       });
       
       if (resp.data && resp.data.status === "success") {
-        alert("Application Submitted Successfully ! Keep Checking your Email for the Status");
+        alert("Application Submitted Successfully! Keep Checking your Email for the Status");
         navigate('/');
       } else {
         // Handle specific error cases
@@ -159,325 +158,164 @@ const Apply = () => {
     }
   }
 
+  // Input field component for DRY code
+  const InputField = ({ name, placeholder, type = "text" }) => (
+    <div className="w-full">
+      <input
+        className={`w-full px-4 py-2 rounded-md font-medium border ${
+          errors[name] ? "border-red-500" : "border-gray-300"
+        } placeholder-gray-500 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 ${
+          darkMode
+            ? "bg-[#302E30] text-white"
+            : "bg-white text-black"
+        }`}
+        type={type}
+        placeholder={placeholder}
+        name={name}
+        value={obj[name]}
+        onChange={doUpdate}
+      />
+      {errors[name] && <p className="text-red-500 text-xs mt-1">{errors[name]}</p>}
+    </div>
+  );
+
   return (
     <>
-    <Navbar2 />
-    <div className="flex flex-col justify-center items-center w-full h-[100vh] bg-[#282D2D] px-5 apply ">
-      <div className=" flex flex-col items-end justify-start  overflow-hidden mb-2 xl:max-w-3xl w-full">
-        <div className="flex">
-          <h3 className="text-white">Dark Mode : &nbsp;</h3>
-          <label className="inline-flex relative items-center mr-5 cursor-pointer">
-            <input
-              type="checkbox"
-              className="sr-only peer"
-              checked={darkMode}
-              readOnly
-            />
-            <div
-              onClick={() => {
-                setDarkMode(!darkMode);
-              }}
-              className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-            ></div>
-          </label>
-        </div>
-      </div>
-      <div
-        className={`xl:max-w-3xl ${
-          darkMode ? "bg-black" : "bg-white"
-        }  w-full p-5 sm:p-10 rounded-md`}
-      >
-        <h1
-          className={`text-center text-xl sm:text-3xl font-semibold ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          Get a Franchise
-        </h1>
-        <div className="w-full mt-8">
-          <div className="mx-auto max-w-xs sm:max-w-md md:max-w-lg flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg font-medium border-2 ${
-                    errors.name ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none  focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Name"
-                  name="name"
-                  onChange={doUpdate}
-                />
-                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-              </div>
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                    errors.email ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={doUpdate}
-                />
-                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-              </div>
-            </div>
-            <div>
-              <input
-                className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                  errors.contact ? "border-red-500" : "border-transparent"
-                } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                  darkMode
-                    ? "bg-[#302E30] text-white focus:border-white"
-                    : "bg-gray-100 text-black focus:border-black"
-                }`}
-                type="text"
-                placeholder="Contact Number"
-                name="contact"
-                onChange={doUpdate}
-              />
-              {errors.contact && <p className="text-red-500 text-xs mt-1">{errors.contact}</p>}
-            </div>
-            <div>
-              <input
-                className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                  errors.residential_address ? "border-red-500" : "border-transparent"
-                } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                  darkMode
-                    ? "bg-[#302E30] text-white focus:border-white"
-                    : "bg-gray-100 text-black focus:border-black"
-                }`}
-                type="text"
-                placeholder="Residental Address"
-                name="residential_address"
-                onChange={doUpdate}
-              />
-              {errors.residential_address && <p className="text-red-500 text-xs mt-1">{errors.residential_address}</p>}
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg font-medium border-2 ${
-                    errors.experience ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none  focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Any Business Experience? "
-                  name="experience"
-                  onChange={doUpdate}
-                />
-                {errors.experience && <p className="text-red-500 text-xs mt-1">{errors.experience}</p>}
-              </div>
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                    errors.years ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Years in Business"
-                  name="years"
-                  onChange={doUpdate}
-                />
-                {errors.years && <p className="text-red-500 text-xs mt-1">{errors.years}</p>}
-              </div>
-            </div>
-            <h2 className={`text-center text-xl sm:text-xl font-semibold ${
-              darkMode ? "text-white" : "text-black"
-            }`}>Site Details</h2>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg font-medium border-2 ${
-                    errors.siteLocation ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none  focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Site Location "
-                  name="siteLocation"
-                  onChange={doUpdate}
-                />
-                {errors.siteLocation && <p className="text-red-500 text-xs mt-1">{errors.siteLocation}</p>}
-              </div>
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                    errors.city ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="City"
-                  name="city"
-                  onChange={doUpdate}
-                />
-                {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg font-medium border-2 ${
-                    errors.district ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none  focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="District"
-                  name="district"
-                  onChange={doUpdate}
-                />
-                {errors.district && <p className="text-red-500 text-xs mt-1">{errors.district}</p>}
-              </div>
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                    errors.pincode ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="PinCode"
-                  name="pincode"
-                  onChange={doUpdate}
-                />
-                {errors.pincode && <p className="text-red-500 text-xs mt-1">{errors.pincode}</p>}
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg font-medium border-2 ${
-                    errors.length ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none  focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Area(Length) in Sq Feet"
-                  name="length"
-                  onChange={doUpdate}
-                />
-                {errors.length && <p className="text-red-500 text-xs mt-1">{errors.length}</p>}
-              </div>
-              <div className="w-full">
-                <input
-                  className={`w-full px-5 py-3 rounded-lg  font-medium border-2 ${
-                    errors.breadth ? "border-red-500" : "border-transparent"
-                  } placeholder-gray-500 text-sm focus:outline-none focus:border-2  focus:outline ${
-                    darkMode
-                      ? "bg-[#302E30] text-white focus:border-white"
-                      : "bg-gray-100 text-black focus:border-black"
-                  }`}
-                  type="text"
-                  placeholder="Area(Breadth) in Sq Feet"
-                  name="breadth"
-                  onChange={doUpdate}
-                />
-                {errors.breadth && <p className="text-red-500 text-xs mt-1">{errors.breadth}</p>}
-              </div>
-            </div>
-            <div className="flex justify-center items-center flex-col gap-1">
-              <div className="flex justify-center gap-3 py-5">
-                <h4 className={`text-center text-md sm:text-md font-semibold ${
-                  darkMode ? "text-white" : "text-black"
-                }`}>OwnerShip </h4>
-                <div>
-                  <input
-                    className="mt-1 mr-2 h-4 w-4 cursor-pointer appearance-none rounded-full border border-gray-300 bg-white align-top checked:border-4 checked:border-blue-600"
-                    type="radio"
-                    name="ownership"
-                    value="Owned"
-                    id="radioidthree"
-                    onChange={doUpdate}
-                  />
-                  <label className="text-gray-600" htmlFor="radioidthree">
-                    Owned
-                  </label>
-                </div>
-                <div>
-                  <input
-                    className="mt-1 mr-2 h-4 w-4 cursor-pointer appearance-none rounded-full border border-gray-300 bg-white align-top checked:border-4 checked:border-blue-600 disabled:border-blue-400"
-                    type="radio"
-                    name="ownership"
-                    value="Rented"
-                    id="radioidfour"
-                    onChange={doUpdate}
-                  />
-                  <label className="text-gray-600" htmlFor="radioidfour">
-                    Rented
-                  </label>
-                </div>
-              </div>
-              {errors.ownership && <p className="text-red-500 text-xs mt-1">{errors.ownership}</p>}
-            </div>
-            <div>
-              <label className="flex items-center space-x-2">
+      <Navbar2 />
+      <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-8">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <div className="flex justify-end mb-4">
+            <div className="flex items-center">
+              <span className="text-sm text-gray-700 mr-2">Dark Mode</span>
+              <label className="inline-flex relative items-center cursor-pointer">
                 <input
                   type="checkbox"
-                  className="h-4 w-4 cursor-pointer checked:gray"
-                  checked={agreeTerms}
-                  onChange={() => setAgreeTerms(!agreeTerms)}
+                  className="sr-only peer"
+                  checked={darkMode}
+                  readOnly
                 />
-                <span className="hover:cursor-pointer">Agreed in all Terms & Conditions</span>
+                <div
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-indigo-500 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all"
+                ></div>
               </label>
-              {errors.terms && <p className="text-red-500 text-xs mt-1">{errors.terms}</p>}
             </div>
-            <button
-              onClick={doSave}
-              className="mt-5 tracking-wide font-semibold bg-[#E9522C] text-gray-100 w-full py-4 rounded-lg hover:bg-[#E9522C]/90 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-            >
-              <svg
-                className="w-6 h-6 -ml-2"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                <circle cx="8.5" cy="7" r="4" />
-                <path d="M20 8v6M23 11h-6" />
-              </svg>
-              <span className="ml-3">Register</span>
-            </button>
+          </div>
+          
+          <div className={`${darkMode ? "bg-gray-800" : "bg-white"} py-8 px-4 shadow sm:rounded-lg sm:px-10`}>
+            <h2 className={`text-center text-xl font-bold mb-6 ${darkMode ? "text-white" : "text-gray-900"}`}>
+              Get a Franchise
+            </h2>
+            
+            <div className="space-y-5">
+              {/* Personal Information Section */}
+              <div className="space-y-4">
+                <h3 className={`text-md font-medium ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Personal Information</h3>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <InputField name="name" placeholder="Name" />
+                  <InputField name="email" placeholder="Email" type="email" />
+                </div>
+                <InputField name="contact" placeholder="Contact Number" />
+                <InputField name="residential_address" placeholder="Residential Address" />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <InputField name="experience" placeholder="Business Experience?" />
+                  <InputField name="years" placeholder="Years in Business" />
+                </div>
+              </div>
+              
+              {/* Site Details Section */}
+              <div className="pt-2 space-y-4">
+                <h3 className={`text-md font-medium ${darkMode ? "text-gray-200" : "text-gray-700"}`}>Site Details</h3>
+                <InputField name="siteLocation" placeholder="Site Location" />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <InputField name="city" placeholder="City" />
+                  <InputField name="district" placeholder="District" />
+                </div>
+                <InputField name="pincode" placeholder="Pincode" />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <InputField name="length" placeholder="Length (sq ft)" />
+                  <InputField name="breadth" placeholder="Breadth (sq ft)" />
+                </div>
 
-            <p className="mt-6 text-xs text-gray-600 text-center">
-              Already have an account?{" "}
-              <a href="" onClick={() => navigate('/login')}>
-                <span className="text-[#E9522C] font-semibold">Login</span>
-              </a>
-            </p>
+                {/* Ownership Radio Buttons */}
+                <div className="space-y-2">
+                  <label className={`block text-sm font-medium ${darkMode ? "text-gray-200" : "text-gray-700"}`}>
+                    Ownership Status
+                  </label>
+                  <div className="flex space-x-6">
+                    <div className="flex items-center">
+                      <input
+                        id="owned"
+                        name="ownership"
+                        type="radio"
+                        value="Owned"
+                        onChange={doUpdate}
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label htmlFor="owned" className={`ml-2 block text-sm ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                        Owned
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        id="rented"
+                        name="ownership"
+                        type="radio"
+                        value="Rented"
+                        onChange={doUpdate}
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label htmlFor="rented" className={`ml-2 block text-sm ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                        Rented
+                      </label>
+                    </div>
+                  </div>
+                  {errors.ownership && <p className="text-red-500 text-xs">{errors.ownership}</p>}
+                </div>
+              </div>
+              
+              {/* Terms and Conditions */}
+              <div className="mt-4">
+                <div className="flex items-center">
+                  <input
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    checked={agreeTerms}
+                    onChange={() => setAgreeTerms(!agreeTerms)}
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="terms" className={`ml-2 block text-sm ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
+                    I agree to all Terms & Conditions
+                  </label>
+                </div>
+                {errors.terms && <p className="text-red-500 text-xs mt-1">{errors.terms}</p>}
+              </div>
+              
+              {/* Submit Button */}
+              <div>
+                <button
+                  onClick={doSave}
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#E9522C] hover:bg-[#E9522C]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E9522C]"
+                >
+                  Register
+                </button>
+              </div>
+              
+              {/* Login Link */}
+              <div className="text-center mt-4">
+                <p className={`text-xs ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                  Already have an account?{" "}
+                  <a onClick={() => navigate('/login')} className="text-[#E9522C] font-semibold cursor-pointer">
+                    Login
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };

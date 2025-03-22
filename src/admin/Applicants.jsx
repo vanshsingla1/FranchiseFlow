@@ -98,7 +98,7 @@ const Applicants = () => {
 
   const doDecline = async (email) => {
     try {
-      await axios.post("https://franchiseflow-backend-production.up.railway.app/declineApplications", { email }, {
+      await axios.post("https://franchiseflow-backend-production.up.railway.app/admin/declineApplications", { email }, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
     } catch (error) {
