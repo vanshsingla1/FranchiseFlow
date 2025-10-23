@@ -37,7 +37,7 @@ const Applicants = () => {
   const handleFranchise = async (email) => {
     if (franchised[email]) return;
     setFranchised((prev) => ({ ...prev, [email]: true }));
-    let url = "https://franchiseflow-backend-production.up.railway.app/admin/makeFranchise";
+    let url = "https://franchiseflow-backend.onrender.com/admin/makeFranchise";
     let obj = { email: email };
 
     try {
@@ -78,17 +78,17 @@ const Applicants = () => {
   };
 
   const getAllPendingApplicantDetails = () =>
-    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllPendingApplicantsDetails", "pending");
+    fetchApplicants("https://franchiseflow-backend.onrender.com/admin/getAllPendingApplicantsDetails", "pending");
 
   const getAllAcceptedApplicantDetails = () =>
-    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllAcceptedApplicantsDetails", "accepted");
+    fetchApplicants("https://franchiseflow-backend.onrender.com/admin/getAllAcceptedApplicantsDetails", "accepted");
 
   const getAllDeclinedApplicantDetails = () =>
-    fetchApplicants("https://franchiseflow-backend-production.up.railway.app/admin/getAllDeclinedApplicantsDetails", "declined");
+    fetchApplicants("https://franchiseflow-backend.onrender.com/admin/getAllDeclinedApplicantsDetails", "declined");
 
   const doApprove = async (email) => {
     try {
-      await axios.post("https://franchiseflow-backend-production.up.railway.app/admin/approveApplications", { email }, {
+      await axios.post("https://franchiseflow-backend.onrender.com/admin/approveApplications", { email }, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
     } catch (error) {
@@ -98,7 +98,7 @@ const Applicants = () => {
 
   const doDecline = async (email) => {
     try {
-      await axios.post("https://franchiseflow-backend-production.up.railway.app/admin/declineApplications", { email }, {
+      await axios.post("https://franchiseflow-backend.onrender.com/admin/declineApplications", { email }, {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
     } catch (error) {

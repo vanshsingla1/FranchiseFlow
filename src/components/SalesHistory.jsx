@@ -15,7 +15,7 @@ const SalesHistory = () => {
 
   const fetchSalesData = async () => {
     try {
-      const url = "https://franchiseflow-backend-production.up.railway.app/user/fetch-sales-data";
+      const url = "https://franchiseflow-backend.onrender.com/user/fetch-sales-data";
       const obj = { startDate, endDate, email };
   
       // Retrieve token from localStorage

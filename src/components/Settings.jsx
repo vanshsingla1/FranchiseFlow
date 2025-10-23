@@ -54,7 +54,7 @@ const Settings = () => {
     }
   
     try {
-      let url = "https://franchiseflow-backend-production.up.railway.app/user/updatePwd";
+      let url = "https://franchiseflow-backend.onrender.com/user/updatePwd";
       let obj = { 
         pwd: oldpassword,
         newpwd: password,
